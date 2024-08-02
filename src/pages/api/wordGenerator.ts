@@ -24,6 +24,6 @@ export default async function handler(
 
     res.status(200).json({ result: completion.choices[0].message });
   } catch (error) {
-    res.status(500).json({ error: error.message || "Something went wrong" });
+    res.status(500).json({ error: error ?? "Something went wrong" });
   }
 }

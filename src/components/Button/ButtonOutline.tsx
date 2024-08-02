@@ -10,14 +10,14 @@ export const ButtonOutline = ({
   disabled,
   type = "button",
   text,
-  onClick,
+  onClick
 }: ButtonOutlineProps) => {
   return (
     <motion.button
       variants={animationVariants}
       whileTap={`tap`}
       whileHover={`hover`}
-      className="h-12 bg-transparent border-2 border-white rounded w-full"
+      className="h-12 text-white bg-transparent border-2 border-white rounded w-full"
       disabled={disabled}
       type={type}
       onClick={onClick}

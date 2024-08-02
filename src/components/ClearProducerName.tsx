@@ -1,9 +1,15 @@
 "use client";
-import { useClearProducerName, useProducerName } from "@/hooks";
+import { useClearProducerName } from "@/hooks";
 import { ButtonOutline } from "./Button";
+import { useCallback } from "react";
 
 export const ClearProducerName = () => {
   const clearProducerName = useClearProducerName();
 
-  return <ButtonOutline text="Clear" onClick={() => clearProducerName()} />;
+  const handleClearProducerName = useCallback(() => {
+    clearProducerName();
+    window.location.reload();
+  }, [clearProducerName]);
+
+  return <ButtonOutline text="Clear" onClick={handleClearProducerName} />;
 };
