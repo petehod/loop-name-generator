@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     fontSize: {
@@ -17,19 +17,19 @@ const config: Config = {
       1.5: "1.5rem",
       2: "2rem",
       2.5: "2.5rem",
-      3: "3rem",
+      3: "3rem"
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-inter)"]
       },
       backgroundImage: {
         "custom-gradient":
-          "linear-gradient(360deg, rgba(255, 255, 255, 1) 0%, rgba(211, 181, 225, 0.3575805322128851) 100%)",
+          "linear-gradient(360deg, rgba(255, 255, 255, 1) 0%, rgba(211, 181, 225, 0.3575805322128851) 100%)"
       },
 
       colors: {
-        primary: "#b525f8",
+        primary: "#3b75e5",
         primaryFaded: "rgba(202, 108, 248, 0.15)",
         secondary: "#C9ABD9",
         tertiary: "#EFECF0",
@@ -47,75 +47,77 @@ const config: Config = {
         deny: "#EE1515",
         denyLight: "rgba(238, 21, 21, 0.1)",
         confirm: "#177055",
-        confirmLight: "#7CD7BC",
+        confirmLight: "#7CD7BC"
       },
       minHeight: {
         350: "350px",
         400: "400px",
         600: "600px",
-        800: "800px",
+        800: "800px"
       },
       maxHeight: {
         14: "14rem",
-        300: "300px",
+        300: "300px"
       },
       height: {
         325: "325px",
         400: "400px",
         600: "600px",
         800: "800px",
-        1000: "1000px",
+        1000: "1000px"
       },
       width: {
-        11.25: "11.25rem",
         15: "15rem",
-
         70: "70rem",
         64: "64rem",
         60: "60rem",
         62: "16rem",
-        40: "40rem",
+        40: "40rem"
       },
       maxWidth: {
         xxxs: "12rem",
         xxs: "16rem",
         660: "660px",
         16: "16rem",
+        20: "20rem",
+
         21: "21rem",
         24: "24rem",
         26: "26rem",
+        28: "28rem",
         30: "30rem",
         46: "46rem",
         48: "48rem",
         58: "58rem",
+        60: "60rem",
         70: "70rem",
-        112: "28rem",
+        112: "28rem"
       },
       spacing: {
         88: "22rem",
-        112: "28rem",
+        112: "28rem"
       },
       boxShadow: {
-        "3xl": "0 8px 16px 0 rgba(44, 44, 44, 0.25)",
+        "3xl": "0 8px 16px 0 rgba(44, 44, 44, 0.25)"
       },
       borderRadius: {
-        "4xl": "32px",
+        "4xl": "32px"
       },
       borderWidth: {
-        1: "1px",
+        1: "1px"
       },
       flex: {
         1.33: "1.3 1.3 0",
-        2: "2 1 0",
+        2: "2 1 0"
       },
       aspectRatio: {
-        "4/3": "4 / 3",
+        "4/3": "4 / 3"
       },
       flexBasis: {
-        "1/10": "10%",
-      },
-    },
+        "1/10": "10%"
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
 export default config;

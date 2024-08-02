@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pjs.className} flex flex-col items-center justify-center min-h-screen`}
+        className={`${pjs.className} gradient-bg flex flex-col items-center justify-center min-h-screen`}
       >
         {children}
       </body>

@@ -4,6 +4,7 @@ import {
   NameGenerator,
   ObtainProducerName,
 } from "@/components";
+import { OpenAIChat } from "@/components/OpenAiChat";
 import { useProducerName } from "@/hooks";
 
 export default function Quickie() {
@@ -11,6 +12,7 @@ export default function Quickie() {
 
   return (
     <>
+      <OpenAIChat />
       {!producerName ? (
         <ObtainProducerName onSetProducerName={setProducerName} />
       ) : (

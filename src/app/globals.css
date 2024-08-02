@@ -31,3 +31,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.gradient-bg {
+  background: hsla(220, 77%, 56%, 1);
+  background: radial-gradient(
+    circle,
+    hsla(220, 77%, 56%, 1) 0%,
+    hsla(0, 0%, 17%, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    hsla(220, 77%, 56%, 1) 0%,
+    hsla(0, 0%, 17%, 1) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#3B75E5", endColorstr="#2C2C2C", GradientType=1 );
+}
