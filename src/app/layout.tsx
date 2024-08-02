@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/Header";
 
 const pjs = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body
         className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen`}
       >
+        <Header />
         {children}
       </body>
     </html>

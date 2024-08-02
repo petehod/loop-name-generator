@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormInputLabelWrapper, Input, Label } from "./Form";
 import { Button } from "./Button";
 
-export const ObtainProducerName = ({
+export const ProducerNameForm = ({
   onSetProducerName
 }: {
   onSetProducerName: (input: string) => void;
@@ -26,9 +26,10 @@ export const ObtainProducerName = ({
             type="text"
             minLength={1}
             maxLength={20}
+            placeholder="_yayadean"
           />
         }
-        label={<Label text="Producer name" htmlFor="name" />}
+        label={<Label text="Please enter your producer name" htmlFor="name" />}
       />
 
       <Button text="Submit" type="submit" />

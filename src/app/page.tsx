@@ -2,7 +2,7 @@
 import {
   ClearProducerName,
   NameGenerator,
-  ObtainProducerName
+  ProducerNameForm
 } from "@/components";
 import { useProducerName } from "@/hooks";
 
@@ -11,14 +11,16 @@ export default function Quickie() {
   return (
     <>
       {!producerName ? (
-        <ObtainProducerName onSetProducerName={setProducerName} />
+        <div className="bg-dark p-8 rounded-lg">
+          <ProducerNameForm onSetProducerName={setProducerName} />
+        </div>
       ) : (
-        <>
+        <div className="flex flex-col justify-start items-start">
+          <NameGenerator name={producerName} />
           <div className="w-80 mt-4">
             <ClearProducerName />
           </div>
-          <NameGenerator name={producerName} />
-        </>
+        </div>
       )}
     </>
   );

@@ -1,4 +1,4 @@
 export * from "./NameGenerator";
-export * from "./ObtainProducerName";
+export * from "./ProducerNameForm";
 export * from "./ClearProducerName";
 export * from "./DateToggle";
