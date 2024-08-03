@@ -7,23 +7,9 @@ import { motion } from "framer-motion";
 export const Header = memo(() => {
   return (
     <header
-      className={`w-full flex flex-col md:flex-row justify-center items-center bg-transparent mb-2  text-white`}
+      className={`w-full text-center flex justify-center items-center bg-transparent mb-2  text-white`}
     >
-      <h1 className="text-3 font-semibold mr-2.5 mb-2">
-        <motion.div
-          whileHover={{
-            scale: 1.03,
-            transition: { duration: 0.25 }
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Link href={LINK_TREE_LINK}>Made by</Link>
-        </motion.div>
-      </h1>
-
-      <Link href={LINK_TREE_LINK}>
-        <LogoWithText />
-      </Link>
+      <h1 className="text-3 font-semibold  mb-2">Loop Name Generator</h1>
     </header>
   );
 });

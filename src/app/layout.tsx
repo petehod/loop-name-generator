@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const pjs = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -18,10 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen`}
+        className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen pb-4 px-4`}
       >
-        <Header />
-        {children}
+        <div className="flex-grow flex flex-col items-center justify-center w-full">
+          {children}
+        </div>
+
+        <Footer />
       </body>
     </html>
   );

@@ -6,3 +6,7 @@ export function getDate(): string {
 
   return `${month}/${day}/${year}`;
 }
+
+export function getCurrentYear(): number {
+  return new Date().getFullYear();
+}

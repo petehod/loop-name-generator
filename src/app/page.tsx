@@ -4,12 +4,16 @@ import {
   NameGenerator,
   ProducerNameForm
 } from "@/components";
+import { Header } from "@/components/Header";
 import { useProducerName } from "@/hooks";
 
 export default function Home() {
   const [producerName, setProducerName] = useProducerName();
   return !producerName ? (
-    <ProducerNameForm onSetProducerName={setProducerName} />
+    <>
+      <Header />
+      <ProducerNameForm onSetProducerName={setProducerName} />
+    </>
   ) : (
     <>
       <NameGenerator name={producerName} />
