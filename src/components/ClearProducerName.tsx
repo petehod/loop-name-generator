@@ -11,5 +11,12 @@ export const ClearProducerName = () => {
     window.location.reload();
   }, [clearProducerName]);
 
-  return <ButtonOutline text="Clear" onClick={handleClearProducerName} />;
+  return (
+    <div className="w-full max-w-26 px-6 mt-4">
+      <ButtonOutline
+        text="Clear producer name"
+        onClick={handleClearProducerName}
+      />
+    </div>
+  );
 };

@@ -6,15 +6,21 @@ import { CheckIcon } from "./CheckIcon";
 
 export const CopyToClipboardIcon = ({ loopName }: { loopName: string }) => {
   const [successfullyCopied, setSuccessfullyCopied] = useState(false);
-  return successfullyCopied ? (
-    <CheckIcon />
-  ) : (
-    <SocialMediaIcon
-      icon={COPY_ICON}
-      onClick={() => {
-        copyToClipboard(loopName);
-        setSuccessfullyCopied(true);
-      }}
-    />
+  return (
+    <div className="">
+      {successfullyCopied ? (
+        <CheckIcon />
+      ) : (
+        <SocialMediaIcon
+          iconColor="text-white"
+          backgroundColor="bg-dark"
+          icon={COPY_ICON}
+          onClick={() => {
+            copyToClipboard(loopName);
+            setSuccessfullyCopied(true);
+          }}
+        />
+      )}
+    </div>
   );
 };

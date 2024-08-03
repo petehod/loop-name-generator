@@ -17,8 +17,7 @@ export const Header = memo(() => {
           }}
           whileTap={{ scale: 0.9 }}
         >
-          <Link href={HOME_LINK}>Quickie</Link>{" "}
-          <span className="text-2.5 font-light">by</span>{" "}
+          <Link href={LINK_TREE_LINK}>Made by</Link>
         </motion.div>
       </h1>
 

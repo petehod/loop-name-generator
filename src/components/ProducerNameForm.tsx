@@ -17,22 +17,27 @@ export const ProducerNameForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormInputLabelWrapper
-        input={
-          <Input
-            onChange={(e) => setInputValue(e.target.value)}
-            required
-            type="text"
-            minLength={1}
-            maxLength={20}
-            placeholder="_yayadean"
-          />
-        }
-        label={<Label text="Please enter your producer name" htmlFor="name" />}
-      />
+    <div className="bg-dark w-full max-w-26 p-8 rounded-lg">
+      <form onSubmit={handleSubmit} className="w-full">
+        <FormInputLabelWrapper
+          input={
+            <Input
+              onChange={(e) => setInputValue(e.target.value)}
+              required
+              type="text"
+              minLength={1}
+              maxLength={20}
+              placeholder="_yayadean"
+              width={"w-full"}
+            />
+          }
+          label={
+            <Label text="Please enter your producer name" htmlFor="name" />
+          }
+        />
 
-      <Button text="Submit" type="submit" />
-    </form>
+        <Button text="Submit" type="submit" />
+      </form>
+    </div>
   );
 };
