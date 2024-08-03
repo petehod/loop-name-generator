@@ -1,13 +1,14 @@
+"use client";
 import { COPY_ICON } from "@/constants/icon.constants";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { SocialMediaIcon } from "./SocialMediaIcon";
 import { CheckIcon } from "./CheckIcon";
-import { useVisibleIcon } from "@/hooks";
 import { Toast } from "../Toast";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
+import { useVisibleIcon } from "@/context/VisibleIconContext";
 
 export const CopyToClipboardIcon = ({ loopName }: { loopName: string }) => {
-  const [copyIconVisible, setCopyIconVisible] = useVisibleIcon();
+  const { copyIconVisible, toggleVisibility } = useVisibleIcon();
   return (
     <>
       {copyIconVisible ? (
@@ -17,7 +18,7 @@ export const CopyToClipboardIcon = ({ loopName }: { loopName: string }) => {
           icon={COPY_ICON}
           onClick={() => {
             copyToClipboard(loopName);
-            setCopyIconVisible(!copyIconVisible);
+            toggleVisibility();
           }}
         />
       ) : (
