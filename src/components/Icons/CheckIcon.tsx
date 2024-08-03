@@ -12,6 +12,6 @@ export const CheckIcon = () => {
     }, DEFAULT_TIMEOUT);
     return () => clearTimeout(timeout);
   }, []);
-  if (timedOut) return <CopyToClipboardIcon />;
+  if (timedOut) return <CopyToClipboardIcon loopName="" />;
   return <SocialMediaIcon icon={CHECK_ICON} />;
 };
