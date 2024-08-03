@@ -4,8 +4,8 @@ import { DateToggle } from "./DateToggle";
 import { useState } from "react";
 import { getDate } from "@/utils/date.utils";
 import { CopyToClipboardIcon, SocialMediaIcon } from "./Icons";
-import { COPY_ICON, DICE_ICON } from "@/constants/icon.constants";
-import { copyToClipboard } from "@/utils/copyClipboard.utils";
+import { DICE_ICON } from "@/constants/icon.constants";
+import { useVisibleIcon } from "@/hooks";
 
 export const NameGenerator = ({ name }: { name: string }) => {
   const [includeDate, setIncludeDate] = useState(false);

@@ -11,7 +11,6 @@ export const ProducerNameForm = ({
   const [inputValue, setInputValue] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log("uaua");
     event.preventDefault();
     onSetProducerName(inputValue);
   };
