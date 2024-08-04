@@ -1,9 +1,16 @@
 "use client";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout.constants";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 
 interface VisibleIconContextType {
   copyIconVisible: boolean;
-  toggleVisibility: () => void;
+  toggleVisibility: (value: boolean) => void;
 }
 
 const VisibleIconContext = createContext<VisibleIconContextType | undefined>(
@@ -15,10 +22,19 @@ export const VisibleIconProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [copyIconVisible, setCopyIconVisible] = useState<boolean>(true);
 
-  const toggleVisibility = () => {
-    setCopyIconVisible((prevState) => !prevState);
+  const toggleVisibility = (value: boolean) => {
+    setCopyIconVisible(value);
   };
 
+  useEffect(() => {
+    if (copyIconVisible) return;
+
+    const timeout = setTimeout(() => {
+      setCopyIconVisible(true);
+    }, DEFAULT_TIMEOUT);
+
+    return () => clearTimeout(timeout);
+  }, [copyIconVisible]);
   return (
     <VisibleIconContext.Provider value={{ copyIconVisible, toggleVisibility }}>
       {children}

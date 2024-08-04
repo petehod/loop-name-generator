@@ -12,7 +12,7 @@ export const ClearProducerName = () => {
   }, [clearProducerName]);
 
   return (
-    <div className="w-full max-w-26 px-6 mt-4">
+    <div className="w-full max-w-24  mt-4">
       <ButtonOutline
         text="Clear producer name"
         onClick={handleClearProducerName}

@@ -18,7 +18,7 @@ export const CopyToClipboardIcon = ({ loopName }: { loopName: string }) => {
           icon={COPY_ICON}
           onClick={() => {
             copyToClipboard(loopName);
-            toggleVisibility();
+            toggleVisibility(false);
           }}
         />
       ) : (

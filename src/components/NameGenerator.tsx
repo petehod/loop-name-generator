@@ -5,9 +5,11 @@ import { useState } from "react";
 import { getDate } from "@/utils/date.utils";
 import { CopyToClipboardIcon, SocialMediaIcon } from "./Icons";
 import { DICE_ICON } from "@/constants/icon.constants";
-import { useVisibleIcon } from "@/hooks";
+import { useVisibleIcon } from "@/context/VisibleIconContext";
 
 export const NameGenerator = ({ name }: { name: string }) => {
+  const { toggleVisibility } = useVisibleIcon();
+
   const [includeDate, setIncludeDate] = useState(false);
   const [word, setWord] = useState(randomWord());
   const date = getDate();
@@ -17,7 +19,10 @@ export const NameGenerator = ({ name }: { name: string }) => {
       <div className="flex flex-col items-center justify-center pb-4 text-center">
         <div className="w-full flex justify-end ">
           <SocialMediaIcon
-            onClick={() => setWord(randomWord())}
+            onClick={() => {
+              toggleVisibility(true);
+              setWord(randomWord());
+            }}
             icon={DICE_ICON}
             className="right-2 cursor-pointer"
           />

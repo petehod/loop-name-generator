@@ -16,7 +16,7 @@ export const ProducerNameForm = ({
   };
 
   return (
-    <div className="bg-dark w-full max-w-26 p-8 rounded-lg">
+    <div className="bg-dark w-full max-w-26 py-8 px-6 rounded-lg">
       <form onSubmit={handleSubmit} className="w-full">
         <FormInputLabelWrapper
           input={
