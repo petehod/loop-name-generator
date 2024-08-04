@@ -32,7 +32,7 @@ export const NameGenerator = ({ name }: { name: string }) => {
         </h2>
         <DateToggle includeDate={includeDate} setIncludeDate={setIncludeDate} />
       </div>
-      <div className="relative flex justify-between items-center bg-dark max-w-24 w-full text-white rounded-b-md py-2 px-4">
+      <div className="relative flex justify-between items-center bg-dark max-w-24 w-full h-16 text-white rounded-b-md py-2 px-4">
         <h3 className="text-1.125 max-w-24 w-full">{loopName}</h3>
 
         <CopyToClipboardIcon loopName={loopName} />
