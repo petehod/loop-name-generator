@@ -11,5 +11,5 @@ export const formatLoopName = (
 ) => {
   return trimExcessSpaces(
     `${word} ${tempo ?? ""} ${key ?? ""} @${producerName} ${date ?? ""}`
-  );
+  ).toLowerCase();
 };

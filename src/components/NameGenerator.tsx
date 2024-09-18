@@ -9,6 +9,7 @@ import { useVisibleIcon } from "@/context/VisibleIconContext";
 import { generateLoopNames } from "@/services/openai.service";
 import { FormInputLabelWrapper, Input, Label } from "./Form";
 import { Button } from "./Button";
+import { LoopNameIdea } from "./LoopNameIdea";
 
 export const NameGenerator = ({ name }: { name: string }) => {
   const { toggleVisibility } = useVisibleIcon();
@@ -48,23 +49,14 @@ export const NameGenerator = ({ name }: { name: string }) => {
 
         <CopyToClipboardIcon loopName={loopName} />
       </div>
-      {wordIdeas && (
-        <div className="flex flex-col items-center gap-2 p-4">
-          <h4 className="text-1.125 font-semibold text-primary">Word Ideas</h4>
-          <p className="text-1.125">
-            {wordIdeas.map((word) => (
-              <span key={word} className="text-1.125">
-                {word}
-              </span>
-            ))}
-          </p>
-        </div>
-      )}
+
       <FormInputLabelWrapper
         input={<Input onChange={(e) => setTheme(e.target.value)} />}
         label={<Label text="Word" htmlFor="word" />}
       />
       <Button onClick={handleGenerateWords} text="Generate Words" />
+      {wordIdeas &&
+        wordIdeas.map((word) => <LoopNameIdea key={word} word={word} />)}
     </div>
   );
 };
