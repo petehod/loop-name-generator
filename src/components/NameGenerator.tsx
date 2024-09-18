@@ -1,14 +1,25 @@
 import { formatLoopName } from "@/utils/formatText.utils";
 import { randomWord } from "@/utils/words.utils";
 import { DateToggle } from "./DateToggle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getDate } from "@/utils/date.utils";
 import { CopyToClipboardIcon, SocialMediaIcon } from "./Icons";
 import { DICE_ICON } from "@/constants/icon.constants";
 import { useVisibleIcon } from "@/context/VisibleIconContext";
+import { generateLoopNames } from "@/services/openai.service";
+import { FormInputLabelWrapper, Input, Label } from "./Form";
+import { Button } from "./Button";
 
 export const NameGenerator = ({ name }: { name: string }) => {
   const { toggleVisibility } = useVisibleIcon();
+  const [theme, setTheme] = useState("");
+  const [wordIdeas, setWordIdeas] = useState<string[]>();
+  const handleGenerateWords = async () => {
+    const response = await generateLoopNames(theme);
+
+    const splitResponse = response.split(", ");
+    setWordIdeas(splitResponse);
+  };
 
   const [includeDate, setIncludeDate] = useState(false);
   const [word, setWord] = useState(randomWord());
@@ -37,6 +48,23 @@ export const NameGenerator = ({ name }: { name: string }) => {
 
         <CopyToClipboardIcon loopName={loopName} />
       </div>
+      {wordIdeas && (
+        <div className="flex flex-col items-center gap-2 p-4">
+          <h4 className="text-1.125 font-semibold text-primary">Word Ideas</h4>
+          <p className="text-1.125">
+            {wordIdeas.map((word) => (
+              <span key={word} className="text-1.125">
+                {word}
+              </span>
+            ))}
+          </p>
+        </div>
+      )}
+      <FormInputLabelWrapper
+        input={<Input onChange={(e) => setTheme(e.target.value)} />}
+        label={<Label text="Word" htmlFor="word" />}
+      />
+      <Button onClick={handleGenerateWords} text="Generate Words" />
     </div>
   );
 };
