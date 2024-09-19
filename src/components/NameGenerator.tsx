@@ -1,8 +1,8 @@
 import { DateToggle } from "./DateToggle";
 import { useState } from "react";
 import { generateLoopNames } from "@/services/openai.service";
-import { LoopNameIdea } from "./LoopNameIdea";
-import { OpenAiWordForm } from "./Form/OpenAiWordForm";
+import { LoopNameIdea } from "./WordIdea";
+import { OpenAiWordForm } from "./Form/ThemeForm";
 import { ClearProducerName } from "./ClearProducerName";
 
 export const NameGenerator = ({ name }: { name: string }) => {

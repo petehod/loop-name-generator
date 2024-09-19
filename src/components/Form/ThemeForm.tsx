@@ -4,7 +4,7 @@ import { Input } from "./Input";
 import { Label } from "./Label";
 import { useState } from "react";
 
-export const OpenAiWordForm = ({
+export const ThemeForm = ({
   onSubmit
 }: {
   onSubmit: (

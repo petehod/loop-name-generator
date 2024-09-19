@@ -8,7 +8,7 @@ import { animationVariants } from "@/constants/animations.constants";
 import { COPY_ICON } from "@/constants/icon.constants";
 import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
-export const LoopNameIdea = memo(({ word }: { word: string }) => {
+export const WordIdea = memo(({ word }: { word: string }) => {
   const { showToast } = useToast();
   const [producerName] = useProducerName();
   const [copied, setCopied] = useState(false);
