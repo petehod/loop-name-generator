@@ -2,12 +2,14 @@ import { formatLoopName } from "@/utils/formatText.utils";
 import { CheckIcon, SocialMediaIcon } from "./Icons";
 import { useProducerName } from "@/hooks";
 import { memo, useEffect, useMemo, useState } from "react";
-import { SingleCopyToClipboardIcon } from "./Icons/SingleCopyToClipboardIcon";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
 import { COPY_ICON } from "@/constants/icon.constants";
+import { useToast } from "@/context/ToastContext";
+import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
 export const LoopNameIdea = memo(({ word }: { word: string }) => {
+  const { showToast } = useToast();
   const [producerName] = useProducerName();
   const [copied, setCopied] = useState(false);
   const formattedName = useMemo(() => {
@@ -27,6 +29,7 @@ export const LoopNameIdea = memo(({ word }: { word: string }) => {
       className={`flex bg-dark rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 gap-2`}
       onClick={() => {
         copyToClipboard(formattedName);
+        showToast(SUCCESSFUL_COPY_MESSAGE);
         setCopied(true);
       }}
       variants={animationVariants}
