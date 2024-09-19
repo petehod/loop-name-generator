@@ -7,8 +7,13 @@ export const ClearProducerName = () => {
   const clearProducerName = useClearProducerName();
 
   const handleClearProducerName = useCallback(() => {
-    clearProducerName();
-    window.location.reload();
+    const confirm = window.confirm(
+      `Are you sure you want to clear your producer name?`
+    );
+    if (confirm) {
+      clearProducerName();
+      window.location.reload();
+    }
   }, [clearProducerName]);
 
   return (

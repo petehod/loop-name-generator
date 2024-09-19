@@ -1,24 +1,48 @@
 import { formatLoopName } from "@/utils/formatText.utils";
-import { BUTTON_STYLES } from "./Button";
-import { CopyToClipboardIcon } from "./Icons";
+import { CheckIcon, SocialMediaIcon } from "./Icons";
 import { useProducerName } from "@/hooks";
-import { useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { SingleCopyToClipboardIcon } from "./Icons/SingleCopyToClipboardIcon";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
-
-export const LoopNameIdea = ({ word }: { word: string }) => {
+import { motion } from "framer-motion";
+import { animationVariants } from "@/constants/animations.constants";
+import { COPY_ICON } from "@/constants/icon.constants";
+export const LoopNameIdea = memo(({ word }: { word: string }) => {
   const [producerName] = useProducerName();
+  const [copied, setCopied] = useState(false);
   const formattedName = useMemo(() => {
     return formatLoopName(producerName, word);
   }, [producerName, word]);
-  console.log(formattedName);
+
+  useEffect(() => {
+    if (copied) {
+      const timeout = setTimeout(() => {
+        setCopied(false);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [copied]);
   return (
-    <div
-      className={`${BUTTON_STYLES} flex-row`}
-      onClick={() => copyToClipboard(formattedName)}
+    <motion.div
+      className={`flex bg-dark rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 gap-2`}
+      onClick={() => {
+        copyToClipboard(formattedName);
+        setCopied(true);
+      }}
+      variants={animationVariants}
+      whileTap={"tap"}
+      whileHover={"hover"}
     >
-      <SingleCopyToClipboardIcon loopName={formattedName} />
-      <p>{formattedName}</p>
-    </div>
+      {!copied ? (
+        <SocialMediaIcon
+          iconColor="text-white"
+          backgroundColor="bg-dark"
+          icon={COPY_ICON}
+        />
+      ) : (
+        <CheckIcon />
+      )}
+      <p className="w-full">{formattedName}</p>
+    </motion.div>
   );
-};
+});

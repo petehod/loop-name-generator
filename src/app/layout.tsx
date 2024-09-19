@@ -21,7 +21,7 @@ export default function RootLayout({
     <VisibleIconProvider>
       <html lang="en">
         <body
-          className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen pb-4 px-4`}
+          className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen py-12 pb-4 px-4`}
         >
           <div className="flex-grow flex flex-col items-center justify-center w-full">
             {children}

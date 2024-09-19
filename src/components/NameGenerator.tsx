@@ -1,62 +1,46 @@
-import { formatLoopName } from "@/utils/formatText.utils";
-import { randomWord } from "@/utils/words.utils";
 import { DateToggle } from "./DateToggle";
-import { useEffect, useState } from "react";
-import { getDate } from "@/utils/date.utils";
-import { CopyToClipboardIcon, SocialMediaIcon } from "./Icons";
-import { DICE_ICON } from "@/constants/icon.constants";
-import { useVisibleIcon } from "@/context/VisibleIconContext";
+import { useState } from "react";
 import { generateLoopNames } from "@/services/openai.service";
-import { FormInputLabelWrapper, Input, Label } from "./Form";
-import { Button } from "./Button";
 import { LoopNameIdea } from "./LoopNameIdea";
+import { OpenAiWordForm } from "./Form/OpenAiWordForm";
+import { ClearProducerName } from "./ClearProducerName";
 
 export const NameGenerator = ({ name }: { name: string }) => {
-  const { toggleVisibility } = useVisibleIcon();
-  const [theme, setTheme] = useState("");
   const [wordIdeas, setWordIdeas] = useState<string[]>();
-  const handleGenerateWords = async () => {
+  const handleGenerateWords = async (
+    event: React.FormEvent<HTMLFormElement>,
+    theme: string
+  ) => {
+    event.preventDefault();
+    if (!theme) return;
     const response = await generateLoopNames(theme);
 
     const splitResponse = response.split(", ");
     setWordIdeas(splitResponse);
   };
 
-  const [includeDate, setIncludeDate] = useState(false);
-  const [word, setWord] = useState(randomWord());
-  const date = getDate();
-  const loopName = formatLoopName(name, word, "", "", includeDate ? date : "");
   return (
-    <div className="bg-white rounded-lg w-full max-w-24 md:w-96">
-      <div className="flex flex-col items-center justify-center pb-4 text-center">
-        <div className="w-full flex justify-end ">
-          <SocialMediaIcon
-            onClick={() => {
-              toggleVisibility(true);
-              setWord(randomWord());
-            }}
-            icon={DICE_ICON}
-            className="right-2 cursor-pointer"
-          />
+    <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg w-full max-w-24 md:w-96 h-full pt-4">
+        <div className="flex flex-col items-center justify-center text-center">
+          <div className="w-full flex justify-end "></div>
+          <h2 className="text-2.5 font-semibold mb-4 text-primary">
+            Loop Name Generator
+          </h2>
         </div>
-        <h2 className="text-2.5 font-semibold mb-4 text-primary">
-          Loop Name Generator
-        </h2>
-        <DateToggle includeDate={includeDate} setIncludeDate={setIncludeDate} />
-      </div>
-      <div className="relative flex justify-between items-center bg-dark max-w-24 w-full h-16 text-white rounded-b-md py-2 px-4">
-        <h3 className="text-1.125 max-w-24 w-full">{loopName}</h3>
 
-        <CopyToClipboardIcon loopName={loopName} />
+        <OpenAiWordForm onSubmit={handleGenerateWords} />
       </div>
-
-      <FormInputLabelWrapper
-        input={<Input onChange={(e) => setTheme(e.target.value)} />}
-        label={<Label text="Word" htmlFor="word" />}
-      />
-      <Button onClick={handleGenerateWords} text="Generate Words" />
-      {wordIdeas &&
-        wordIdeas.map((word) => <LoopNameIdea key={word} word={word} />)}
+      {wordIdeas && (
+        <div>
+          <div className="flex flex-col w-full gap-2">
+            {wordIdeas.map((word) => (
+              <LoopNameIdea key={word} word={word} />
+            ))}
+          </div>
+        </div>
+      )}
+      <ClearProducerName />
     </div>
   );
 };
