@@ -1,6 +1,9 @@
 import { auth, db } from "@/firebase";
 import { User } from "@/schema";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 export const FirebaseService = {
@@ -17,5 +20,8 @@ export const FirebaseService = {
     await setDoc(userRef, {
       userData
     });
+  },
+  loginUser: async (email: string, password: string) => {
+    await signInWithEmailAndPassword(auth, email, password);
   }
 };
