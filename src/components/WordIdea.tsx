@@ -8,13 +8,15 @@ import { animationVariants } from "@/constants/animations.constants";
 import { COPY_ICON } from "@/constants/icon.constants";
 import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
+import { useUser } from "@/context/UserContext";
 export const WordIdea = memo(({ word }: { word: string }) => {
   const { showToast } = useToast();
-  const [producerName] = useProducerName();
+  const { userProfile } = useUser();
+
   const [copied, setCopied] = useState(false);
   const formattedName = useMemo(() => {
-    return formatLoopName(producerName, word);
-  }, [producerName, word]);
+    return formatLoopName(userProfile?.username as string, word);
+  }, [userProfile, word]);
 
   useEffect(() => {
     if (copied) {

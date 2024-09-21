@@ -6,8 +6,11 @@ import { z } from "zod";
 import { Button } from "../Button";
 import { FormInputLabelWrapper, Input, Label, Form } from "@/components/Form";
 import { FirebaseService } from "@/services";
+import { useUser } from "@/context/UserContext";
+import { useRedirectLoggedInUser } from "@/hooks";
 
 export default function LoginForm() {
+  useRedirectLoggedInUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
