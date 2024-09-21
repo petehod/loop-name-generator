@@ -3,12 +3,14 @@
 import NoProducerYet from "@/components/NoProducerYet";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
 import YesProducerName from "@/components/YesProducerName";
+import { useUser } from "@/context/UserContext";
 import { useProducerName } from "@/hooks";
 import { useState } from "react";
 
 export default function Home() {
   const [producerName, _] = useProducerName();
-  console.log("producerName", producerName);
+  const { userProfile } = useUser();
+  console.log("user", userProfile);
   const [wordIdeas, setWordIdeas] = useState<string[]>();
 
   return (
