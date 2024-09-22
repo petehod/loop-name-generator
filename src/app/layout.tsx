@@ -26,6 +26,7 @@ export default function RootLayout({
         className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen py-12 pb-4 px-4`}
       >
         <ProviderWrapper>
+          <Header />
           <div className="flex-grow flex flex-col items-center justify-center w-full">
             {children}
           </div>

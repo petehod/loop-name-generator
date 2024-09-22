@@ -7,25 +7,19 @@ type ButtonOutlineProps = {
 };
 import { useUser } from "@/context/UserContext";
 import { Button } from "./Button";
+import { useRouter } from "next/navigation";
 
 export const LoginLogoutButton = ({}: ButtonOutlineProps) => {
   const { isLoggedIn, signOut } = useUser();
+  const router = useRouter();
 
   return (
-    <div className="h-16 background-dark w-full absolute top-0 left-0 right-0 flex justify-end pr-12">
-      {isLoggedIn ? (
-        <Button
-          className={`text-white `}
-          onClick={async () => await signOut()}
-          text={"Logout"}
-        />
-      ) : (
-        <Button
-          className={`text-white `}
-          onClick={async () => await signOut()}
-          text={"Logout"}
-        />
-      )}
-    </div>
+    <Button
+      className={`text-white `}
+      onClick={
+        isLoggedIn ? async () => await signOut() : () => router.push("/login")
+      }
+      text={isLoggedIn ? "Logout" : "Login"}
+    />
   );
 };

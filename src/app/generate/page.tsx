@@ -1,5 +1,4 @@
 "use client";
-import { LoginLogoutButton } from "@/components/Button";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
 import YesProducerName from "@/components/YesProducerName";
 import { useUser } from "@/context/UserContext";
@@ -14,8 +13,6 @@ export default function Generate() {
 
   return (
     <div className="flex flex-col gap-4">
-      <LoginLogoutButton />
-
       <YesProducerName onSetWordIdeas={setWordIdeas} />
 
       {wordIdeas && <WordIdeasWrapper words={wordIdeas} />}
