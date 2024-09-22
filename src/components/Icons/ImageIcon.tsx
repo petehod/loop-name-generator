@@ -1,4 +1,4 @@
-import { SocialMediaIcon } from "./SocialMediaIcon";
+import { Icon } from "./Icon";
 import Image from "next/image";
 // Used to render either an image or an icon
 export const ImageIcon = ({
@@ -17,6 +17,6 @@ export const ImageIcon = ({
       className="rounded-lg	"
     />
   ) : (
-    <SocialMediaIcon icon={icon} />
+    <Icon icon={icon} />
   );
 };

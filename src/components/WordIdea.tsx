@@ -1,18 +1,18 @@
 import { formatLoopName } from "@/utils/formatText.utils";
-import { CheckIcon, SocialMediaIcon } from "./Icons";
-import { useProducerName } from "@/hooks";
-import { memo, useEffect, useMemo, useState } from "react";
+import { CheckIcon, Icon } from "./Icons";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
-import { COPY_ICON } from "@/constants/icon.constants";
+import { CHECK_ICON, COPY_ICON, SAVE_ICON } from "@/constants/icon.constants";
 import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
 import { useUser } from "@/context/UserContext";
+import { FirebaseService } from "@/services";
 export const WordIdea = memo(({ word }: { word: string }) => {
   const { showToast } = useToast();
   const { userProfile } = useUser();
-
+  const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
   const formattedName = useMemo(() => {
     return formatLoopName(userProfile?.username as string, word);
@@ -26,6 +26,15 @@ export const WordIdea = memo(({ word }: { word: string }) => {
       return () => clearTimeout(timeout);
     }
   }, [copied]);
+
+  const handleSaveIdea = useCallback(async () => {
+    if (!userProfile) return;
+    await FirebaseService.updateSavedNames(userProfile?.id, word);
+    setSaved(true);
+    showToast(`Successfully saved ${word}`);
+  }, [showToast, userProfile, word]);
+
+  if (saved) return null;
   return (
     <motion.div
       className={`flex bg-dark rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 gap-2`}
@@ -38,16 +47,15 @@ export const WordIdea = memo(({ word }: { word: string }) => {
       whileTap={"tap"}
       whileHover={"hover"}
     >
-      {!copied ? (
-        <SocialMediaIcon
-          iconColor="text-white"
-          backgroundColor="bg-dark"
-          icon={COPY_ICON}
-        />
-      ) : (
-        <CheckIcon />
-      )}
+      <Icon
+        iconColor="text-white"
+        backgroundColor="bg-dark"
+        icon={!copied ? COPY_ICON : CHECK_ICON}
+      />
+
       <p className="w-full">{formattedName}</p>
+
+      <Icon icon={SAVE_ICON} onClick={handleSaveIdea} />
     </motion.div>
   );
 });

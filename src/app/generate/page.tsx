@@ -1,6 +1,5 @@
 "use client";
-import { LogoutButton } from "@/components/Button";
-import NoProducerYet from "@/components/NoProducerYet";
+import { LoginLogoutButton } from "@/components/Button";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
 import YesProducerName from "@/components/YesProducerName";
 import { useUser } from "@/context/UserContext";
@@ -15,7 +14,7 @@ export default function Generate() {
 
   return (
     <div className="flex flex-col gap-4">
-      {isLoggedIn && <LogoutButton />}
+      <LoginLogoutButton />
 
       <YesProducerName onSetWordIdeas={setWordIdeas} />
 

@@ -5,8 +5,6 @@ import { ButtonHTMLAttributes } from "react";
 type ButtonOutlineProps = ButtonHTMLAttributes<HTMLButtonElement> &
   MotionProps & {
     text: string;
-    backgroundColor?: "primary" | "white" | "dark";
-    textColor?: "primary" | "white" | "dark";
   };
 
 export const BUTTON_STYLES = `h-12 w-full bg-primary text-white rounded`;

@@ -1,6 +1,6 @@
 export * from "./TikTokIcon";
 export * from "./YoutubeIcon";
-export * from "./SocialMediaIcon";
+export * from "./Icon";
 export * from "./SocialMediaIcons";
 export * from "./ImageIcon";
 export * from "./CopyToClipboardIcon";

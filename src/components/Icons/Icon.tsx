@@ -1,9 +1,9 @@
 "use client";
 import { memo } from "react";
 import { motion } from "framer-motion";
-import { Icon, IconProps } from "@iconify/react";
+import { Icon as IconifyIcon, IconProps } from "@iconify/react";
 import { animationVariants } from "@/constants/animations.constants";
-export const SocialMediaIcon = memo(
+export const Icon = memo(
   ({
     backgroundColor,
     iconColor,
@@ -18,7 +18,7 @@ export const SocialMediaIcon = memo(
         whileTap={"tap"}
         whileHover={`hover`}
       >
-        <Icon height={32} width={32} {...props} />
+        <IconifyIcon height={32} width={32} {...props} />
       </motion.div>
     );
   }

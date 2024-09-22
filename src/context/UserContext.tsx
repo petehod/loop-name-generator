@@ -47,7 +47,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         const userSnapshot = await getDoc(userDocRef);
 
         if (userSnapshot.exists()) {
-          setUserProfile(userSnapshot.data().userData as User);
+          setUserProfile(userSnapshot.data() as User);
         } else {
           setUserProfile(null);
         }

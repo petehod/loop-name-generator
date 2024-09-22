@@ -1,5 +1,5 @@
 import { CHECK_ICON } from "@/constants/icon.constants";
-import { SocialMediaIcon } from "./SocialMediaIcon";
+import { SocialMediaIcon } from "./Icon";
 
 export const CheckIcon = () => {
   return (

@@ -7,6 +7,7 @@ export const GUITAR_ICON = "fa-solid:guitar";
 export const DICE_ICON = "fa-solid:dice-five";
 export const COPY_ICON = "fa6-solid:copy";
 export const CHECK_ICON = "fa6-solid:circle-check";
+export const SAVE_ICON = `material-symbols:save`;
 export const SOCIAL_MEDIA_ICONS: { icon: string; link: string }[] = [
   { icon: TIK_TOKE_ICON, link: TIK_TOK_LINK },
   { icon: YOUTUBE_ICON, link: YOUTUBE_LINK },

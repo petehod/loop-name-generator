@@ -1,7 +1,7 @@
 "use client";
 import { COPY_ICON } from "@/constants/icon.constants";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
-import { SocialMediaIcon } from "./SocialMediaIcon";
+import { SocialMediaIcon } from "./Icon";
 import { CheckIcon } from "./CheckIcon";
 import { Toast } from "../Toast";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";

@@ -4,9 +4,14 @@ import React, { useCallback, useRef, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { z } from "zod";
 import { Button } from "../Button";
-import { FormInputLabelWrapper, Input, Label, Form } from "@/components/Form";
+import {
+  FormInputLabelWrapper,
+  Input,
+  Label,
+  Form,
+  FormErrorMessage
+} from "@/components/Form";
 import { FirebaseService } from "@/services";
-import { useUser } from "@/context/UserContext";
 import { useRedirectLoggedInUser } from "@/hooks";
 
 export default function LoginForm() {
@@ -73,17 +78,21 @@ export default function LoginForm() {
         label={<Label htmlFor="password" text="Password" />}
       />
 
-      {errorMessage && (
-        <p className="text-red-600 text-sm mt-2">{errorMessage}</p>
-      )}
+      {errorMessage && <FormErrorMessage error={errorMessage} />}
+
+      <Button
+        type="submit"
+        text="Login"
+        backgroundColor="dark"
+        style={{ marginBottom: "0.5rem" }}
+      />
+
       <Link
         href={`/reset-password`}
-        className="text-0.875 font-semibold text-primary mt-4 text-center md:text-left"
+        className="text-0.875 font-semibold text-primary my-4 mb-6 text-center md:text-left"
       >
         Forgot password?
       </Link>
-
-      <Button type="submit" text="Login" backgroundColor="dark" />
     </Form>
   );
 }
