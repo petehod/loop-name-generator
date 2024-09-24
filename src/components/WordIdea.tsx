@@ -4,7 +4,12 @@ import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
-import { CHECK_ICON, COPY_ICON, SAVE_ICON } from "@/constants/icon.constants";
+import {
+  CHECK_ICON,
+  COPY_ICON,
+  SAVE_ICON,
+  TRASH_ICON
+} from "@/constants/icon.constants";
 import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
 import { useUser } from "@/context/UserContext";
@@ -35,10 +40,12 @@ const AnimatedIcon = ({
 export const WordIdea = memo(
   ({
     word,
-    backgroundColor = "bg-dark"
+    backgroundColor = "bg-dark",
+    rightIcon
   }: {
     word: string;
     backgroundColor?: string;
+    rightIcon: "save" | "delete";
   }) => {
     const { showToast } = useToast();
     const { userProfile } = useUser();
@@ -64,6 +71,11 @@ export const WordIdea = memo(
       showToast(`Successfully saved ${word}`);
     }, [showToast, userProfile, word]);
 
+    const handleDeleteIdea = useCallback(async () => {
+      if (!userProfile) return;
+      await FirebaseService.removeSavedName(userProfile?.id, word);
+    }, [userProfile, word]);
+
     if (saved) return null;
     return (
       <div
@@ -82,8 +94,14 @@ export const WordIdea = memo(
           <p className="w-full">{formattedName}</p>
         </AnimatedIcon>
 
-        <AnimatedIcon onClick={handleSaveIdea}>
-          <Icon icon={SAVE_ICON} height={24} onClick={handleSaveIdea} />
+        <AnimatedIcon
+          onClick={rightIcon === "save" ? handleSaveIdea : handleDeleteIdea}
+        >
+          <Icon
+            icon={rightIcon === "save" ? SAVE_ICON : TRASH_ICON}
+            height={24}
+            onClick={handleSaveIdea}
+          />
         </AnimatedIcon>
       </div>
     );

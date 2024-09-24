@@ -8,6 +8,7 @@ export const DICE_ICON = "fa-solid:dice-five";
 export const COPY_ICON = "ion:copy";
 export const CHECK_ICON = "fa6-solid:circle-check";
 export const SAVE_ICON = `fluent:save-28-filled`;
+export const TRASH_ICON = `iconamoon:trash-fill`;
 export const SOCIAL_MEDIA_ICONS: { icon: string; link: string }[] = [
   { icon: TIK_TOKE_ICON, link: TIK_TOK_LINK },
   { icon: YOUTUBE_ICON, link: YOUTUBE_LINK },

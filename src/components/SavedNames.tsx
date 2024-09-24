@@ -18,6 +18,7 @@ export const SavedNames = () => {
             .map((word) => {
               return (
                 <WordIdea
+                  rightIcon="delete"
                   key={word}
                   word={word}
                   backgroundColor="bg-transparent"
