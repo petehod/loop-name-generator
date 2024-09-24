@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { VisibleIconProvider } from "@/context/VisibleIconContext";
-import { ToastProvider } from "@/context/ToastContext";
-import { ToastContainer } from "@/components/Toast";
 import { ProviderWrapper } from "@/context";
+import { Header } from "@/components/Header/Header";
 
 const pjs = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -23,14 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen py-12 pb-4 px-4`}
+        className={`${pjs.className} text-dark gradient-bg flex flex-col items-center justify-center min-h-screen pb-4 px-4`}
       >
         <ProviderWrapper>
           <Header />
           <div className="flex-grow flex flex-col items-center justify-center w-full">
             {children}
           </div>
-
           <Footer />
         </ProviderWrapper>
       </body>

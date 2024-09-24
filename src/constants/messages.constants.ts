@@ -1,1 +1,2 @@
-export const SUCCESSFUL_COPY_MESSAGE = `Successfully copied!`;
+export const SUCCESSFUL_COPY_MESSAGE = (word?: string) =>
+  `Successfully copied ${word}!`;

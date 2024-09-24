@@ -74,7 +74,8 @@ export const WordIdea = memo(
     const handleDeleteIdea = useCallback(async () => {
       if (!userProfile) return;
       await FirebaseService.removeSavedName(userProfile?.id, word);
-    }, [userProfile, word]);
+      showToast(`Successfully removed ${word} from saved`);
+    }, [showToast, userProfile, word]);
 
     if (saved) return null;
     return (
@@ -85,7 +86,7 @@ export const WordIdea = memo(
           containerStyles="w-full"
           onClick={() => {
             copyToClipboard(formattedName);
-            showToast(SUCCESSFUL_COPY_MESSAGE);
+            showToast(SUCCESSFUL_COPY_MESSAGE(word));
             setCopied(true);
           }}
         >

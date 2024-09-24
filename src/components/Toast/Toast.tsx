@@ -42,7 +42,7 @@ export const Toast: React.FC<ToastProps> = ({
           variants={animationVariants}
           whileHover={"hover"}
           whileTap={"tap"}
-          className={`cursor-pointer fixed bottom-12 inset-x-4 md:inset-x-1/3 px-4  flex items-center justify-center px-4 py-2 rounded ${backgroundColor} ${textColor} z-50`}
+          className={`cursor-pointer  flex items-center justify-center px-4 py-2 rounded-full ${backgroundColor} ${textColor} z-50`}
           onClick={() => setVisible(false)}
         >
           <p className={`text-1 font-semibold`}>{message}</p>

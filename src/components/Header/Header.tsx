@@ -1,13 +1,15 @@
-"use client";
-import { memo } from "react";
 import Nav from "./Nav";
-export const Header = memo(() => {
+import { LogoWithText } from "@/components/Logo";
+
+export function Header() {
   return (
-    <header
-      className={`w-full max-w-60 text-center flex justify-center items-center bg-transparent mb-2  text-white`}
-    >
-      {/* <h1 className="text-3 font-semibold  mb-2">Loop Name Generator</h1> */}
-      <Nav />
+    <header className={`w-full h-24 flex justify-center items-center z-50`}>
+      <div
+        className={`h-full flex items-center justify-between max-w-60  w-full `}
+      >
+        <LogoWithText />
+        <Nav />
+      </div>
     </header>
   );
-});
+}
