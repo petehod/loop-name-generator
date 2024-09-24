@@ -11,9 +11,7 @@ export const Icon = memo(
   }: IconProps & { backgroundColor?: string; iconColor?: string }) => {
     return (
       <motion.div
-        className={`${backgroundColor ?? "bg-white"} ${
-          iconColor ?? "text-dark"
-        } rounded-full p-2 cursor-pointer`}
+        className={`${backgroundColor} ${iconColor} rounded-full p-2 cursor-pointer`}
         variants={animationVariants}
         whileTap={"tap"}
         whileHover={`hover`}

@@ -12,10 +12,8 @@ import {
   FormErrorMessage
 } from "@/components/Form";
 import { FirebaseService } from "@/services";
-import { useRedirectLoggedInUser } from "@/hooks";
 
 export default function LoginForm() {
-  useRedirectLoggedInUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
