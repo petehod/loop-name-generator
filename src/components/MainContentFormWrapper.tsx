@@ -5,7 +5,5 @@ export default function MainContentFormWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="bg-dark w-full max-w-26 p-4  rounded-lg ">{children}</div>
-  );
+  return <div className="rounded-lg ">{children}</div>;
 }

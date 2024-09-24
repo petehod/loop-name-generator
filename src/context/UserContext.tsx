@@ -12,7 +12,7 @@ import {
   signOut as firebaseSignOut
 } from "firebase/auth";
 import { auth, db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { User } from "@/schema";
 
 interface UserContextType {
@@ -44,13 +44,19 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (firebaseUser) {
         const userDocRef = doc(db, "users", firebaseUser.uid);
-        const userSnapshot = await getDoc(userDocRef);
 
-        if (userSnapshot.exists()) {
-          setUserProfile(userSnapshot.data() as User);
-        } else {
-          setUserProfile(null);
-        }
+        const unsubscribeFromUserProfile = onSnapshot(
+          userDocRef,
+          (userSnapshot) => {
+            if (userSnapshot.exists()) {
+              setUserProfile(userSnapshot.data() as User);
+            } else {
+              setUserProfile(null);
+            }
+          }
+        );
+
+        return () => unsubscribeFromUserProfile();
       } else {
         setUserProfile(null);
       }

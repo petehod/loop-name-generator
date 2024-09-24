@@ -26,9 +26,8 @@ export default function YesProducerName({
   return (
     <MainContentWrapper>
       <MainContentTitle />
-      <MainContentFormWrapper>
-        <ThemeForm onSubmit={handleGenerateWords} />
-      </MainContentFormWrapper>
+
+      <ThemeForm onSubmit={handleGenerateWords} />
     </MainContentWrapper>
   );
 }

@@ -1,21 +1,15 @@
 "use client";
-import { useUser } from "@/context/UserContext";
 import { LoginLogoutButton } from "../Button";
-import { SavedNames } from "../Modal";
 import { usePathname } from "next/navigation";
+import { shouldHideLoginLogoutButton } from "@/utils/navigation.utils";
 
 export default function Nav() {
   const path = usePathname();
-  const hideLoginLogoutButton = path === "/login" || path === "/signup";
-  console.log(hideLoginLogoutButton);
-  const { userProfile } = useUser();
-  console.log(userProfile);
+  const hideLoginLogoutButton = shouldHideLoginLogoutButton(path);
+
   return (
-    <nav className=" w-full flex flex-col justify-end item-end">
+    <nav className=" w-full flex flex-col justify-end items-center">
       {!hideLoginLogoutButton && <LoginLogoutButton />}
-      {userProfile?.savedNames && userProfile.savedNames.length > 0 && (
-        <SavedNames />
-      )}
     </nav>
   );
 }

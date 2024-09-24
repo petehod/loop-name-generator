@@ -12,7 +12,7 @@ export default function Generate() {
   if (!isLoggedIn) router.push("/login");
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex w-full items-center flex-col gap-4">
       <YesProducerName onSetWordIdeas={setWordIdeas} />
 
       {wordIdeas && <WordIdeasWrapper words={wordIdeas} />}

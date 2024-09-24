@@ -15,10 +15,12 @@ export const ThemeForm = ({
   const [theme, setTheme] = useState("");
   return (
     <form
-      className="relative flex flex-col justify-center items-center bg-dark  text-white rounded-b-md p-4"
+      className="relative w-full flex flex-col justify-center items-center  rounded-b-md "
       onSubmit={(e) => onSubmit(e, theme)}
     >
       <FormInputLabelWrapper
+        marginBottom="mb-2"
+        containerStyles="items-center"
         input={
           <Input
             placeholder="ex: Pretty colors"
@@ -26,7 +28,9 @@ export const ThemeForm = ({
             onChange={(e) => setTheme(e.target.value)}
           />
         }
-        label={<Label text="Enter a theme" htmlFor="word" />}
+        label={
+          <Label text="Enter a theme, word, phrase, etc." htmlFor="word" />
+        }
       />
       <Button type="submit" text="Generate Words" />
     </form>
