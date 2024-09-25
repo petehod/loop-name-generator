@@ -5,6 +5,8 @@ import { FormInputLabelWrapper, Label, Input, Form } from "@/components/Form";
 import { z } from "zod";
 import { FirebaseService } from "@/services";
 import { getDefaultUser, User } from "@/schema";
+import { useRouter } from "next/navigation";
+import { sendEmailVerification } from "firebase/auth";
 
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
@@ -14,6 +16,7 @@ const SignupSchema = z.object({
 });
 
 const SignupForm: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -35,8 +38,10 @@ const SignupForm: React.FC = () => {
     );
 
     await FirebaseService.addUser(formattedData);
-
+    await sendEmailVerification(userData);
     console.log(`Successfully created User!`);
+
+    router.push("/generate");
   };
 
   return (

@@ -78,13 +78,16 @@ export default function LoginForm() {
 
       {errorMessage && <FormErrorMessage error={errorMessage} />}
 
-      <Button
-        type="submit"
-        text="Login"
-        backgroundColor="dark"
-        style={{ marginBottom: "0.5rem" }}
-      />
-
+      <Button type="submit" text="Login" style={{ marginBottom: "0.5rem" }} />
+      <div className="flex items-center justify-start gap-1 my-2">
+        <p className="text-white"> Don&apos;t have an account?</p>
+        <Link
+          href={`/signup`}
+          className=" font-semibold text-primary  text-center md:text-left"
+        >
+          Sign up
+        </Link>
+      </div>
       <Link
         href={`/reset-password`}
         className="text-0.875 font-semibold text-primary my-4 mb-6 text-center md:text-left"

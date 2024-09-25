@@ -8,6 +8,7 @@ export default function Home() {
 
   const { isLoggedIn } = useUser();
 
-  if (isLoggedIn) router.push("/generate");
+  if (isLoggedIn) router.replace("/generate");
+
   return <div className="flex flex-col gap-4">Hi</div>;
 }

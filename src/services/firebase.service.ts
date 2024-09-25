@@ -2,7 +2,8 @@ import { auth, db } from "@/firebase";
 import { User } from "@/schema";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  updatePassword
 } from "firebase/auth";
 import {
   arrayRemove,
@@ -41,5 +42,20 @@ export const FirebaseService = {
     await updateDoc(userRef, {
       savedNames: arrayRemove(nameToRemove)
     });
+  },
+  updateUserProfile: async (
+    userId: string,
+    username: string,
+    password?: string
+  ) => {
+    const userRef = doc(db, "users", userId);
+
+    await updateDoc(userRef, {
+      username: username
+    });
+
+    if (password && auth.currentUser) {
+      await updatePassword(auth.currentUser, password);
+    }
   }
 };

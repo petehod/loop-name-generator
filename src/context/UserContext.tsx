@@ -90,9 +90,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     [user, userProfile, loading]
   );
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
