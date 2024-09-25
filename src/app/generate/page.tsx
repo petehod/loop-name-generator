@@ -3,13 +3,14 @@ import { ThemeForm } from "@/components/Form";
 import MainContentTitle from "@/components/MainContentTitle";
 import MainContentWrapper from "@/components/MainContentWrapper";
 import { SavedNames } from "@/components/SavedNames";
+import withAuth from "@/components/WithAuth";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
 import { useUser } from "@/context/UserContext";
 import { generateLoopNames } from "@/services";
 
 import { useState } from "react";
 
-export default function Generate() {
+function Generate() {
   const { isLoggedIn, userProfile } = useUser();
   const [wordIdeas, setWordIdeas] = useState<string[]>();
   const [enteredTheme, setEnteredTheme] = useState("");
@@ -27,11 +28,9 @@ export default function Generate() {
     setWordIdeas(splitResponse);
   };
 
-  if (!isLoggedIn) return <div>loading...</div>;
-
   return (
     <div className="flex w-full justify-center items-start gap-12">
-      <div className="flex  items-center flex-col gap-4">
+      <div className="flex w-full max-w-20  items-center flex-col gap-4">
         <MainContentWrapper>
           <MainContentTitle />
 
@@ -48,3 +47,5 @@ export default function Generate() {
     </div>
   );
 }
+
+export default withAuth(Generate);

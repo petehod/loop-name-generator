@@ -12,13 +12,16 @@ import {
   signOut as firebaseSignOut
 } from "firebase/auth";
 import { auth, db } from "../firebase";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { User } from "@/schema";
+import Loading from "@/components/Loading";
 
 interface UserContextType {
   user: FirebaseUser | null;
   userProfile: User | null;
   isLoggedIn: boolean;
+  emailVerified: boolean;
+  loading: boolean;
   signOut: () => Promise<void>;
 }
 
@@ -37,6 +40,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<FirebaseUser | null>(null);
   const [userProfile, setUserProfile] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -44,6 +48,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (firebaseUser) {
         const userDocRef = doc(db, "users", firebaseUser.uid);
+        setLoading(true);
 
         const unsubscribeFromUserProfile = onSnapshot(
           userDocRef,
@@ -53,12 +58,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
             } else {
               setUserProfile(null);
             }
+            setLoading(false);
           }
         );
 
         return () => unsubscribeFromUserProfile();
       } else {
         setUserProfile(null);
+        setLoading(false);
       }
     });
 
@@ -76,10 +83,16 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
       user,
       userProfile,
       isLoggedIn: !!user,
+      loading,
+      emailVerified: user?.emailVerified || false,
       signOut
     }),
-    [user, userProfile]
+    [user, userProfile, loading]
   );
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
