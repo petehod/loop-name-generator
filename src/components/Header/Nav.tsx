@@ -1,7 +1,5 @@
 "use client";
 import { LoginLogoutButton } from "../Button";
-import { usePathname } from "next/navigation";
-import { shouldHideLoginLogoutButton } from "@/utils/navigation.utils";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { NAV_LINKS } from "@/constants/links.constants";
@@ -9,7 +7,6 @@ import { useMemo } from "react";
 
 export default function Nav() {
   const { isLoggedIn } = useUser();
-  console.log(isLoggedIn);
 
   const links = useMemo(() => {
     if (!isLoggedIn) return NAV_LINKS.filter((link) => !link.protectedRoute);

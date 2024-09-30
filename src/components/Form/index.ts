@@ -5,4 +5,4 @@ export * from "./ThemeForm";
 export * from "./SignupForm";
 export * from "./LoginForm";
 export * from "./Form";
-export * from "./FormErrorMessage";
+export * from "./FormMessage";

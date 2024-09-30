@@ -43,7 +43,6 @@ const SignupForm: React.FC = () => {
 
     await FirebaseService.addUser(formattedData);
     await sendEmailVerification(userData);
-    console.log(`Successfully created User!`);
 
     router.push("/generate");
   };

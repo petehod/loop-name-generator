@@ -9,7 +9,7 @@ import {
   Input,
   Label,
   Form,
-  FormErrorMessage
+  FormMessage
 } from "@/components/Form";
 import { FirebaseService } from "@/services";
 
@@ -76,7 +76,7 @@ export default function LoginForm() {
         label={<Label htmlFor="password" text="Password" />}
       />
 
-      {errorMessage && <FormErrorMessage error={errorMessage} />}
+      {errorMessage && <FormMessage message={errorMessage} />}
 
       <Button type="submit" text="Login" style={{ marginBottom: "0.5rem" }} />
       <div className="flex items-center justify-start gap-1 my-2">

@@ -1,11 +1,9 @@
 import { useUser } from "@/context/UserContext";
-import WordIdeasWrapper from "./WordIdeasWrapper";
-import { User } from "@/schema";
 import { WordIdea } from "./WordIdea";
 
 export const SavedNames = () => {
   const { userProfile } = useUser();
-  console.log(userProfile);
+
   return (
     <div className="w-full max-w-20 rounded flex flex-col border-1 border-white max-h-20 ">
       <div className="bg-white rounded-t py-4">
