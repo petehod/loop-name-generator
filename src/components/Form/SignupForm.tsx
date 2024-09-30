@@ -7,7 +7,8 @@ import { FirebaseService } from "@/services";
 import { getDefaultUser, User } from "@/schema";
 import { useRouter } from "next/navigation";
 import { sendEmailVerification } from "firebase/auth";
-
+import { motion } from "framer-motion";
+import { animationVariants } from "@/constants/animations.constants";
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
   email: z.string().email(),
@@ -88,7 +89,26 @@ const SignupForm: React.FC = () => {
         }
       />
 
-      <Button text="Sign up" type="submit" backgroundColor="dark" />
+      <motion.div
+        variants={animationVariants}
+        whileTap={"tap"}
+        whileHover={"hover"}
+        className="flex items-start justify-start w-full max-w-20 gap-1 mb-4"
+      >
+        <Input
+          type="checkbox"
+          id="terms"
+          required
+          className="h-8 w-8 border-gray-300 rounded focus:ring-indigo-500"
+        />
+        <Label
+          text="By checking this box, you are agreeing to let dean contact you with cool stuff"
+          htmlFor="terms"
+          className="text-sm text-white "
+        />
+      </motion.div>
+
+      <Button text="Sign up" type="submit" />
     </Form>
   );
 };
