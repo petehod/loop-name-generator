@@ -1,4 +1,8 @@
 export const HOME_LINK = "/";
+export const GENERATE_LINK = "/generate";
+export const LOGIN = "/login";
+export const SIGNUP = "/signup";
+export const EDIT_PROFILE = "/edit-profile";
 export const SHOP_LINK = "https://shop.yayadean.com";
 export const GLG_LINK = "https://shop.yayadean.com/products/guitar-loop-god";
 export const LINK_TREE_LINK = "https://links.yayadean.com";
@@ -13,15 +17,13 @@ export const NOTION_TEMPLATE_LINK = "http://yayadean.notion.site";
 export const NAV_LINKS = [
   {
     name: "Home",
-    link: HOME_LINK
+    link: HOME_LINK,
+    protectedRoute: false
   },
   {
-    name: "Shop",
-    link: SHOP_LINK
-  },
-  {
-    name: "Links",
-    link: LINK_TREE_LINK
+    name: "Profile",
+    link: EDIT_PROFILE,
+    protectedRoute: true
   }
 ];
 

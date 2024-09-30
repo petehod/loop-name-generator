@@ -9,6 +9,9 @@ import { useRouter } from "next/navigation";
 import { sendEmailVerification } from "firebase/auth";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
+import Link from "next/link";
+import { LOGIN } from "@/constants/links.constants";
+import { useRedirectLoggedInUser } from "@/hooks";
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
   email: z.string().email(),
@@ -21,7 +24,7 @@ const SignupForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-
+  useRedirectLoggedInUser();
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -109,6 +112,13 @@ const SignupForm: React.FC = () => {
       </motion.div>
 
       <Button text="Sign up" type="submit" />
+
+      <p className="text-white  mt-4">
+        Already have an account?
+        <Link href={LOGIN} className="font-semibold text-primary ml-1">
+          Login
+        </Link>
+      </p>
     </Form>
   );
 };
