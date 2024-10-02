@@ -11,7 +11,8 @@ import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
 import Link from "next/link";
 import { LOGIN } from "@/constants/links.constants";
-import { useRedirectLoggedInUser } from "@/hooks";
+import { useFormMessage, useRedirectLoggedInUser } from "@/hooks";
+import { FormMessagesWrapper } from "./FormMessagesWrapper";
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
   email: z.string().email(),
@@ -24,27 +25,32 @@ const SignupForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const { errorMessage, setErrorMessage, resetMessages } = useFormMessage();
   useRedirectLoggedInUser();
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const data = SignupSchema.parse({ email, password, username });
+      const data = SignupSchema.parse({ email, password, username });
 
-    const userData = await FirebaseService.createUser(
-      data.email,
-      data.password
-    );
+      const userData = await FirebaseService.createUser(
+        data.email,
+        data.password
+      );
 
-    const formattedData = getDefaultUser(
-      userData.uid,
-      userData.email ?? data.email,
-      data.username
-    );
+      const formattedData = getDefaultUser(
+        userData.uid,
+        userData.email ?? data.email,
+        data.username
+      );
 
-    await FirebaseService.addUser(formattedData);
-    await sendEmailVerification(userData);
+      await FirebaseService.addUser(formattedData);
+      await sendEmailVerification(userData);
 
-    router.push("/generate");
+      router.push("/generate");
+    } catch (error) {
+      if (error instanceof Error) setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -111,7 +117,7 @@ const SignupForm: React.FC = () => {
       </motion.div>
 
       <Button text="Sign up" type="submit" />
-
+      <FormMessagesWrapper errorMessage={errorMessage} />
       <p className="text-white  mt-4">
         Already have an account?
         <Link href={LOGIN} className="font-semibold text-primary ml-1">
