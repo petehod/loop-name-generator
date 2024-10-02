@@ -5,7 +5,7 @@ export const SavedNames = () => {
   const { userProfile } = useUser();
 
   return (
-    <div className="w-full max-w-20 rounded flex flex-col border-1 border-white max-h-20 ">
+    <div className="w-full md:max-w-20 rounded flex flex-col border-1 border-white max-h-20 ">
       <div className="bg-white rounded-t py-4">
         <h2 className="text-1.125 font-semibold text-center">Saved names</h2>
       </div>

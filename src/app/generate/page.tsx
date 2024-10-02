@@ -29,8 +29,8 @@ function Generate() {
   };
 
   return (
-    <div className="flex w-full justify-center items-start gap-12">
-      <div className="flex w-full max-w-20  items-center flex-col gap-4">
+    <div className="flex flex-col md:flex-row w-full justify-center items-start gap-12">
+      <div className="flex w-full md:max-w-20  items-center flex-col gap-4">
         <MainContentWrapper>
           <MainContentTitle />
 
