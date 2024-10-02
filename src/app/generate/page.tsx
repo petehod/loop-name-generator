@@ -6,7 +6,7 @@ import { SavedNames } from "@/components/SavedNames";
 import withAuth from "@/components/WithAuth";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
 import { useUser } from "@/context/UserContext";
-import { generateLoopNames } from "@/services";
+import { OpenAIService } from "@/services";
 
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ function Generate() {
   ) => {
     event.preventDefault();
     if (!theme) return;
-    const response = await generateLoopNames(theme);
+    const response = await OpenAIService.generateLoopNames(theme);
 
     const splitResponse = response.split(", ");
     setEnteredTheme(theme);
