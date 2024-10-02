@@ -3,7 +3,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-export const LogoWithText = ({ disableLink }: { disableLink: boolean }) => {
+export const LogoWithText = ({
+  disableLink = false
+}: {
+  disableLink?: boolean;
+}) => {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
