@@ -42,6 +42,9 @@ export default function LoginForm() {
         window.location.replace("/");
       } catch (error) {
         if (error instanceof FirebaseError) {
+          await LoggingService.logError(error, {
+            email: email
+          });
           setErrorMessage(error.message);
         }
       }
@@ -54,6 +57,7 @@ export default function LoginForm() {
       <FormInputLabelWrapper
         input={
           <Input
+            autoComplete="on"
             id="email"
             type="email"
             required={true}
@@ -68,6 +72,7 @@ export default function LoginForm() {
       <FormInputLabelWrapper
         input={
           <Input
+            autoComplete="on"
             id="password"
             type="password"
             required={true}
