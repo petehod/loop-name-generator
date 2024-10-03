@@ -12,6 +12,7 @@ import {
   FormMessage
 } from "@/components/Form";
 import { FirebaseService } from "@/services";
+import { LoggingService } from "@/services/logging.service";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -35,7 +36,9 @@ export default function LoginForm() {
 
       try {
         await FirebaseService.loginUser(emailValidationResult.data, password);
-
+        await LoggingService.logSuccess(`Successfully logged in user!`, {
+          email: emailValidationResult.data
+        });
         window.location.replace("/");
       } catch (error) {
         if (error instanceof FirebaseError) {
