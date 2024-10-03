@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { FormInputLabelWrapper, Label, Input, Form } from "@/components/Form";
 import { z } from "zod";
 import { FirebaseService } from "@/services";
-import { getDefaultUser, User } from "@/schema";
+import { getDefaultUser, SignupSchema, User } from "@/schema";
 import { useRouter } from "next/navigation";
 import { sendEmailVerification } from "firebase/auth";
 import { motion } from "framer-motion";
@@ -15,12 +15,6 @@ import { useFormMessage, useRedirectLoggedInUser } from "@/hooks";
 import { FormMessagesWrapper } from "./FormMessagesWrapper";
 import { LoggingService } from "@/services/logging.service";
 import { EMAIL_INPUT, PASSWORD_INPUT, USERNAME_INPUT } from "@/constants";
-// TODO: Optimize this for uniqueness, correct password params, etc
-const SignupSchema = z.object({
-  email: z.string().email(),
-  username: z.string(),
-  password: z.string()
-});
 
 const SignupForm: React.FC = () => {
   const router = useRouter();
@@ -48,7 +42,9 @@ const SignupForm: React.FC = () => {
 
       await FirebaseService.addUser(formattedData);
       await sendEmailVerification(userData);
-
+      await LoggingService.logSuccess(`Successfully created user!`, {
+        email: data.email
+      });
       router.push("/generate");
     } catch (error) {
       if (error instanceof Error) {

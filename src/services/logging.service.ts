@@ -23,7 +23,7 @@ export const LoggingService = {
         },
         body: JSON.stringify({
           error: error.message,
-          userContext: {
+          userInfo: {
             ...userInfo,
             time: new Date().toISOString()
           }
