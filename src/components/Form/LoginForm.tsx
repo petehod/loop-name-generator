@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { z } from "zod";
 import { Button } from "../Button";
@@ -13,6 +13,7 @@ import {
 } from "@/components/Form";
 import { FirebaseService } from "@/services";
 import { LoggingService } from "@/services/logging.service";
+import { EMAIL_INPUT, PASSWORD_INPUT } from "@/constants";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,6 @@ export default function LoginForm() {
     async (e: React.SyntheticEvent) => {
       e.preventDefault();
 
-      // Validate email
       const emailValidationResult = z.string().email().safeParse(email);
       if (!emailValidationResult.success) {
         setErrorMessage(
@@ -58,8 +58,8 @@ export default function LoginForm() {
             type="email"
             required={true}
             onChange={(e) => setEmail(e.target.value)}
-            minLength={1}
-            maxLength={20}
+            minLength={EMAIL_INPUT.minLength}
+            maxLength={EMAIL_INPUT.maxLength}
           />
         }
         label={<Label htmlFor="email" text="Email" />}
@@ -72,8 +72,8 @@ export default function LoginForm() {
             type="password"
             required={true}
             onChange={(e) => setPassword(e.target.value)}
-            minLength={8}
-            maxLength={20}
+            minLength={PASSWORD_INPUT.minLength}
+            maxLength={PASSWORD_INPUT.maxLength}
           />
         }
         label={<Label htmlFor="password" text="Password" />}
