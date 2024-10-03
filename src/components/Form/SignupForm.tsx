@@ -13,6 +13,7 @@ import Link from "next/link";
 import { LOGIN } from "@/constants/links.constants";
 import { useFormMessage, useRedirectLoggedInUser } from "@/hooks";
 import { FormMessagesWrapper } from "./FormMessagesWrapper";
+import { LoggingService } from "@/services/logging.service";
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
   email: z.string().email(),
@@ -49,7 +50,10 @@ const SignupForm: React.FC = () => {
 
       router.push("/generate");
     } catch (error) {
-      if (error instanceof Error) setErrorMessage(error.message);
+      if (error instanceof Error) {
+        await LoggingService.logError(error, { email, username });
+        setErrorMessage(error.message);
+      }
     }
   };
 
