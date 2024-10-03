@@ -14,6 +14,7 @@ import { LOGIN } from "@/constants/links.constants";
 import { useFormMessage, useRedirectLoggedInUser } from "@/hooks";
 import { FormMessagesWrapper } from "./FormMessagesWrapper";
 import { LoggingService } from "@/services/logging.service";
+import { EMAIL_INPUT, PASSWORD_INPUT, USERNAME_INPUT } from "@/constants";
 // TODO: Optimize this for uniqueness, correct password params, etc
 const SignupSchema = z.object({
   email: z.string().email(),
@@ -69,6 +70,8 @@ const SignupForm: React.FC = () => {
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
             required
+            minLength={USERNAME_INPUT.minLength}
+            maxLength={USERNAME_INPUT.maxLength}
           />
         }
       />
@@ -83,6 +86,8 @@ const SignupForm: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
+            minLength={EMAIL_INPUT.minLength}
+            maxLength={EMAIL_INPUT.maxLength}
           />
         }
       />
@@ -97,6 +102,8 @@ const SignupForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
+            minLength={PASSWORD_INPUT.minLength}
+            maxLength={PASSWORD_INPUT.maxLength}
           />
         }
       />
