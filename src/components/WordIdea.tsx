@@ -1,9 +1,10 @@
+"use client";
 import { formatLoopName } from "@/utils/formatText.utils";
 import { Icon } from "./Icons";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { motion } from "framer-motion";
-import { animationVariants } from "@/constants/animations.constants";
+import { animationVariants, SPRING } from "@/constants/animations.constants";
 import {
   CHECK_ICON,
   COPY_ICON,
@@ -31,6 +32,8 @@ const AnimatedIcon = ({
       whileHover={"hover"}
       whileTap={"tap"}
       onClick={onClick}
+      layout="position"
+      transition={SPRING}
     >
       {children}
     </motion.div>
@@ -79,7 +82,8 @@ export const WordIdea = memo(
 
     if (saved) return null;
     return (
-      <div
+      <motion.div
+        layout="position"
         className={`flex rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 ${backgroundColor}`}
       >
         <AnimatedIcon
@@ -92,7 +96,9 @@ export const WordIdea = memo(
         >
           <Icon height={24} icon={!copied ? COPY_ICON : CHECK_ICON} />
 
-          <p className="w-full">{formattedName}</p>
+          <motion.p layout={"position"} transition={SPRING} className="w-full">
+            {formattedName}
+          </motion.p>
         </AnimatedIcon>
 
         <AnimatedIcon
@@ -104,7 +110,7 @@ export const WordIdea = memo(
             onClick={handleSaveIdea}
           />
         </AnimatedIcon>
-      </div>
+      </motion.div>
     );
   }
 );
