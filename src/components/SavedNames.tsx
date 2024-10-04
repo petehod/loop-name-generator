@@ -27,13 +27,18 @@ export const SavedNames = () => {
         {userProfile &&
           userProfile.savedNames
             .sort((a, b) => a.localeCompare(b))
-            .map((word) => {
+            .map((word, index) => {
               return (
                 <WordIdea
                   rightIcon="delete"
                   key={word}
                   word={word}
                   backgroundColor="bg-transparent"
+                  styles={
+                    index === userProfile.savedNames.length - 1
+                      ? ""
+                      : `border-1 items-start rounded-none`
+                  }
                 />
               );
             })}

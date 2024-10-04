@@ -1,3 +1,4 @@
+import { useNameParams } from "@/context/NameParamsContext";
 import { Button } from "../Button";
 import { FormInputLabelWrapper } from "./FormInputLabelWrapper";
 import { Input } from "./Input";
@@ -12,6 +13,7 @@ export const ThemeForm = ({
     theme: string
   ) => Promise<void>;
 }) => {
+  const { setTempo, setKey } = useNameParams();
   const [theme, setTheme] = useState("");
   return (
     <form
@@ -20,9 +22,10 @@ export const ThemeForm = ({
     >
       <FormInputLabelWrapper
         marginBottom="mb-2"
-        containerStyles="items-center"
         input={
           <Input
+            required
+            id="word"
             placeholder="ex: Pretty colors"
             style={{ width: "100%" }}
             onChange={(e) => setTheme(e.target.value)}
@@ -32,6 +35,33 @@ export const ThemeForm = ({
           <Label text="Enter a theme, word, phrase, etc." htmlFor="word" />
         }
       />
+      <FormInputLabelWrapper
+        marginBottom="mb-2"
+        input={
+          <Input
+            id="key"
+            placeholder="a minor"
+            style={{ width: "100%" }}
+            onChange={(e) => setKey(e.target.value)}
+          />
+        }
+        label={<Label text="Key (optional)" htmlFor="key" />}
+      />
+      <FormInputLabelWrapper
+        marginBottom="mb-2"
+        input={
+          <Input
+            min={20}
+            max={250}
+            type="number"
+            placeholder="123"
+            style={{ width: "100%" }}
+            onChange={(e) => setTempo(parseInt(e.target.value))}
+          />
+        }
+        label={<Label text="Tempo (optional)" htmlFor="word" />}
+      />
+
       <Button type="submit" text="Generate Words" />
     </form>
   );
