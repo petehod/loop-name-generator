@@ -9,9 +9,9 @@ export const useFormattedName = (word: string) => {
 
   return useMemo(() => {
     if (!userProfile) return "";
-    const string = `${word} ${tempo ? `${tempo} bpm` : ""}  ${key} @${
-      userProfile.username
-    } ${includeDate ? getDate() : ""}`;
+    const string = `${word} ${tempo ? `${tempo} bpm` : ""}  ${
+      key ? key : ""
+    } @${userProfile.username} ${includeDate ? getDate() : ""}`;
     return string.toLowerCase();
   }, [includeDate, key, tempo, userProfile, word]);
 };
