@@ -5,9 +5,10 @@ import MainContentWrapper from "@/components/MainContentWrapper";
 import { SavedNames } from "@/components/SavedNames";
 import withAuth from "@/components/WithAuth";
 import WordIdeasWrapper from "@/components/WordIdeasWrapper";
+import { SPRING } from "@/constants";
 import { useUser } from "@/context/UserContext";
 import { generateLoopNames } from "@/services";
-
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 function Generate() {
@@ -28,9 +29,19 @@ function Generate() {
     setWordIdeas(splitResponse);
   };
 
+  const savedNamesExist = userProfile && userProfile.savedNames.length > 0;
+
   return (
-    <div className="flex flex-col md:flex-row w-full justify-center items-start gap-12">
-      <div className="flex w-full md:max-w-20  items-center flex-col gap-4">
+    <motion.div
+      layout={true}
+      transition={SPRING}
+      style={{ flex: savedNamesExist ? 1 : "" }}
+      className="flex flex-col md:flex-row w-full justify-center items-start gap-12 h-full "
+    >
+      <motion.div
+        layout="position"
+        className="flex w-full md:max-w-20  items-center flex-col gap-4"
+      >
         <MainContentWrapper>
           <MainContentTitle />
 
@@ -42,9 +53,9 @@ function Generate() {
           </p>
         )}
         {wordIdeas && <WordIdeasWrapper words={wordIdeas} />}
-      </div>
-      {userProfile && userProfile.savedNames.length > 0 && <SavedNames />}
-    </div>
+      </motion.div>
+      {savedNamesExist && <SavedNames />}
+    </motion.div>
   );
 }
 

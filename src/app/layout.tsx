@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <ProviderWrapper>
           <Header />
-          <div className="flex-grow flex flex-col items-center justify-center w-full pt-4 pb-12">
+          <div className="flex-grow flex flex-col items-center justify-center h-full w-full pt-4 pb-12">
             {children}
           </div>
           <Footer />

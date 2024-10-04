@@ -42,3 +42,9 @@ export const animationVariants: Variants = {
     }
   }
 };
+
+export const SPRING = {
+  type: "spring",
+  stiffness: 40,
+  dampness: 10
+};
