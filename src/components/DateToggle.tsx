@@ -2,14 +2,9 @@ import { useVisibleIcon } from "@/context/VisibleIconContext";
 import React from "react";
 import { motion } from "framer-motion";
 import { animationVariants } from "@/constants/animations.constants";
-export const DateToggle = ({
-  includeDate,
-  setIncludeDate
-}: {
-  includeDate: boolean;
-  setIncludeDate: (value: boolean) => void;
-}) => {
-  const { toggleVisibility } = useVisibleIcon();
+import { useToggleDate } from "@/context/DateContext";
+export const DateToggle = () => {
+  const { includeDate, toggleDate } = useToggleDate();
 
   return (
     <div className="flex items-center gap-1  mb-2">
@@ -24,8 +19,7 @@ export const DateToggle = ({
                 : "justify-start  bg-light"
             }`}
         onClick={() => {
-          toggleVisibility(true);
-          setIncludeDate(!includeDate);
+          toggleDate();
         }}
       >
         <div
