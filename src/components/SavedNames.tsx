@@ -1,15 +1,22 @@
+"use client";
 import { useUser } from "@/context/UserContext";
 import { WordIdea } from "./WordIdea";
-
+import { motion } from "framer-motion";
 export const SavedNames = () => {
   const { userProfile } = useUser();
 
   return (
-    <div className="w-full md:max-w-20 rounded flex flex-col border-1 border-white max-h-20 ">
-      <div className="bg-white rounded-t py-4">
+    <motion.div
+      layout={true}
+      className="w-full md:max-w-20 rounded flex flex-col border-1 border-white  h-full max-h-4/5"
+    >
+      <motion.div layout={"position"} className="bg-white rounded-t py-4">
         <h2 className="text-1.125 font-semibold text-center">Saved names</h2>
-      </div>
-      <div className="overflow-y-scroll scrollbar-hide">
+      </motion.div>
+      <motion.div
+        layout={true}
+        className="overflow-y-scroll scrollbar-hide h-full"
+      >
         {userProfile &&
           userProfile.savedNames
             .sort((a, b) => a.localeCompare(b))
@@ -23,7 +30,7 @@ export const SavedNames = () => {
                 />
               );
             })}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

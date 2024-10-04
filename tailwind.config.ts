@@ -58,7 +58,8 @@ const config: Config = {
       maxHeight: {
         14: "14rem",
         20: "20rem",
-        300: "300px"
+        300: "300px",
+        "4/5": "80vh"
       },
       height: {
         325: "325px",
