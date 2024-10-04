@@ -1,4 +1,4 @@
-import { DateProvider } from "./DateContext";
+import { NameParamsProvider } from "./NameParamsContext";
 import { ToastProvider } from "./ToastContext";
 import { UserProvider } from "./UserContext";
 import { VisibleIconProvider } from "./VisibleIconContext";
@@ -12,7 +12,7 @@ export const ProviderWrapper = ({
     <UserProvider>
       <ToastProvider>
         <VisibleIconProvider>
-          <DateProvider>{children}</DateProvider>
+          <NameParamsProvider>{children}</NameParamsProvider>
         </VisibleIconProvider>
       </ToastProvider>
     </UserProvider>

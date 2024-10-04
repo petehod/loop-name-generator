@@ -1,7 +1,6 @@
 "use client";
-import { formatLoopName } from "@/utils/formatText.utils";
 import { Icon } from "./Icons";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { copyToClipboard } from "@/utils/copyClipboard.utils";
 import { motion } from "framer-motion";
 import { animationVariants, SPRING } from "@/constants/animations.constants";
@@ -15,8 +14,7 @@ import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
 import { useUser } from "@/context/UserContext";
 import { FirebaseService } from "@/services";
-import { useToggleDate } from "@/context/DateContext";
-import { getDate } from "@/utils/date.utils";
+import { useFormattedName } from "@/hooks";
 
 const AnimatedIcon = ({
   children,
@@ -46,20 +44,19 @@ export const WordIdea = memo(
   ({
     word,
     backgroundColor = "bg-dark",
-    rightIcon
+    rightIcon,
+    styles
   }: {
     word: string;
     backgroundColor?: string;
     rightIcon: "save" | "delete";
+    styles?: string;
   }) => {
-    const { includeDate } = useToggleDate();
     const { showToast } = useToast();
     const { userProfile } = useUser();
     const [saved, setSaved] = useState(false);
     const [copied, setCopied] = useState(false);
-    const formattedName = useMemo(() => {
-      return formatLoopName(userProfile?.username as string, word);
-    }, [userProfile, word]);
+    const formattedName = useFormattedName(word);
 
     useEffect(() => {
       if (copied) {
@@ -87,7 +84,7 @@ export const WordIdea = memo(
     return (
       <motion.div
         layout="position"
-        className={`flex rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 ${backgroundColor}`}
+        className={`flex rounded-lg text-white items-center justify-center flex-row flex-nowrap cursor-pointer p-2 ${backgroundColor} ${styles}`}
       >
         <AnimatedIcon
           containerStyles="w-full"
@@ -99,9 +96,9 @@ export const WordIdea = memo(
         >
           <Icon height={24} icon={!copied ? COPY_ICON : CHECK_ICON} />
 
-          <p className="w-full">
-            {formattedName} {includeDate ? getDate() : ""}
-          </p>
+          <motion.p layout={"position"} transition={SPRING} className="w-full">
+            {formattedName}
+          </motion.p>
         </AnimatedIcon>
 
         <AnimatedIcon
