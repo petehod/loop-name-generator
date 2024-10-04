@@ -15,6 +15,8 @@ import { useToast } from "@/context/ToastContext";
 import { SUCCESSFUL_COPY_MESSAGE } from "@/constants/messages.constants";
 import { useUser } from "@/context/UserContext";
 import { FirebaseService } from "@/services";
+import { useToggleDate } from "@/context/DateContext";
+import { getDate } from "@/utils/date.utils";
 
 const AnimatedIcon = ({
   children,
@@ -50,6 +52,7 @@ export const WordIdea = memo(
     backgroundColor?: string;
     rightIcon: "save" | "delete";
   }) => {
+    const { includeDate } = useToggleDate();
     const { showToast } = useToast();
     const { userProfile } = useUser();
     const [saved, setSaved] = useState(false);
@@ -96,9 +99,9 @@ export const WordIdea = memo(
         >
           <Icon height={24} icon={!copied ? COPY_ICON : CHECK_ICON} />
 
-          <motion.p layout={"position"} transition={SPRING} className="w-full">
-            {formattedName}
-          </motion.p>
+          <p className="w-full">
+            {formattedName} {includeDate ? getDate() : ""}
+          </p>
         </AnimatedIcon>
 
         <AnimatedIcon

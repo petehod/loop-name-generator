@@ -1,4 +1,5 @@
 "use client";
+import { DateToggle } from "@/components";
 import { ThemeForm } from "@/components/Form";
 import MainContentTitle from "@/components/MainContentTitle";
 import MainContentWrapper from "@/components/MainContentWrapper";
@@ -45,7 +46,7 @@ function Generate() {
       >
         <MainContentWrapper>
           <MainContentTitle />
-
+          <DateToggle />
           <ThemeForm onSubmit={handleGenerateWords} />
         </MainContentWrapper>
         {enteredTheme && (
