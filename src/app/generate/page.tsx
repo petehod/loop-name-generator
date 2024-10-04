@@ -39,6 +39,7 @@ function Generate() {
       className="flex flex-col md:flex-row w-full justify-center items-start gap-12 h-full "
     >
       <motion.div
+        transition={SPRING}
         layout="position"
         className="flex w-full md:max-w-20  items-center flex-col gap-4"
       >
@@ -48,9 +49,13 @@ function Generate() {
           <ThemeForm onSubmit={handleGenerateWords} />
         </MainContentWrapper>
         {enteredTheme && (
-          <p className="text-white text-left w-full">
+          <motion.p
+            layout="position"
+            transition={SPRING}
+            className="text-white text-left w-full"
+          >
             Ideas for <span className="underline">{enteredTheme}</span>
-          </p>
+          </motion.p>
         )}
         {wordIdeas && <WordIdeasWrapper words={wordIdeas} />}
       </motion.div>
