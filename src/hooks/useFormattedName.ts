@@ -6,12 +6,16 @@ import { useMemo } from "react";
 export const useFormattedName = (word: string) => {
   const { userProfile } = useUser();
   const { includeDate, key, tempo } = useNameParams();
+  const paramString = `${tempo ? `${tempo} bpm` : ""}  ${key ?? ""} `;
 
   return useMemo(() => {
     if (!userProfile) return "";
-    const string = `${word} ${tempo ? `${tempo} bpm` : ""}  ${
-      key ? key : ""
-    } @${userProfile.username} ${includeDate ? getDate() : ""}`;
-    return string.toLowerCase();
-  }, [includeDate, key, tempo, userProfile, word]);
+    const rawString = `${word} ${paramString} @${userProfile.username} ${
+      includeDate ? getDate() : ""
+    }`;
+
+    const formattedString = rawString.replace(/\s+/g, " ").trim();
+
+    return formattedString.toLowerCase();
+  }, [includeDate, paramString, userProfile, word]);
 };
