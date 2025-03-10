@@ -5,9 +5,12 @@ import { Form, FormInputLabelWrapper, Input, Label } from "@/components/Form";
 import { Button } from "@/components/Button";
 import { useState } from "react";
 import { FirebaseService } from "@/services";
+import { TEST_USER_EMAIL } from "@/constants/user.constants";
 
 function EditProfilePage() {
   const { user, userProfile } = useUser();
+
+  const isTestUser = userProfile?.email === TEST_USER_EMAIL;
 
   const [username, setUsername] = useState(userProfile?.username || "");
   const [password, setPassword] = useState("");
@@ -40,35 +43,39 @@ function EditProfilePage() {
       setLoading(false);
     }
   };
-  return (
+  return isTestUser ? (
+    <p>You are not allowed to edit the test user details!</p>
+  ) : (
     <Form title="Edit profile" onSubmit={handleSubmit}>
-      <FormInputLabelWrapper
-        label={<Label htmlFor="username" text="Username" />}
-        input={
-          <Input
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            placeholder="Enter new username"
-            minLength={1}
-            maxLength={20}
-          />
-        }
-      />
-      <FormInputLabelWrapper
-        label={<Label htmlFor="password" text="Password" />}
-        input={
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Enter new password"
-            minLength={1}
-            maxLength={20}
-          />
-        }
-      />
+      <>
+        <FormInputLabelWrapper
+          label={<Label htmlFor="username" text="Username" />}
+          input={
+            <Input
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+              placeholder="Enter new username"
+              minLength={1}
+              maxLength={20}
+            />
+          }
+        />
+        <FormInputLabelWrapper
+          label={<Label htmlFor="password" text="Password" />}
+          input={
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Enter new password"
+              minLength={1}
+              maxLength={20}
+            />
+          }
+        />
+      </>
       {error && <p className="text-white">{error}</p>}
       {success && <p className="text-white">{success}</p>}
 
