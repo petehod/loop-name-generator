@@ -31,6 +31,7 @@ Think of it as your personal DJ for file names – spinning out ideas that match
 
 - [Node.js](https://nodejs.org/) (v14 or above)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- You will need an OpenAI API key and set your OPEN_AI_API_KEY to this value!
 
 ### Installation
 
