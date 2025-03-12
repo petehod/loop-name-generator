@@ -1,72 +1,63 @@
-# Loop Name Generator
+# Name Generator
 
-Welcome to the Loop Name Generator, a fun and useful tool for generating unique names for your projects or creative endeavors!
+Welcome to **Name Generator** – the ultimate tool for music producers who are tired of boring file names for their beats and melodies.
 
 ## Overview
 
-This project is built using [Next.js](https://nextjs.org/), a powerful React framework with great performance and developer experience. It's bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to get you up and running quickly.
+Name Generator is designed specifically for music producers. If you’ve ever struggled with naming your DAW files, this tool is here to transform that mundane process into a fun, creative experience. Simply add your Instagram handle, optional key and tempo, and a word or phrase, and let ChatGPT provide you with **10 formatted loop/beat name ideas** that are as 🔥🔥 as your latest drop!
 
-## Getting Started
+![Logo](./public/name-generator.png)
 
-Follow these steps to get your development environment set up:
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/petehod/loop-name-generator.git
-   cd loop-name-generator
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   # or
-   bun install
-   ```
-
-3. **Run the development server:**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action. Start editing the page by modifying `app/page.tsx`. The page will auto-update as you save changes.
+Think of it as your personal DJ for file names – spinning out ideas that match your style and vibe.
 
 ## Features
 
-- **Automatic Font Optimization**: This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to load and optimize Inter, a custom Google Font.
-- **Hot Reloading**: Enjoy a seamless development experience with hot reloading.
-- **Easy Deployment**: Deploy your app effortlessly with Vercel.
+- **Instagram Handle Integration:** Showcase your brand by including your Instagram handle in every generated name.
+- **Optional Keys & Tempos:** Add extra details to tailor the name to the mood or technical specifics of your beat.
+- **ChatGPT Powered Creativity:** Input a word or phrase, and get back 10 killer name ideas that blend your input with AI-generated magic.
+- **Easy-to-Use Interface:** Built with a sleek, modern design to keep your creative flow uninterrupted.
 
-## Learn More
+## Tech Stack
 
-Dive deeper into Next.js with these resources:
+- **Next.js:** For fast, server-side rendering and seamless routing.
+- **React:** To build dynamic, interactive user interfaces.
+- **TypeScript:** Bringing type safety and enhanced developer experience.
+- **Tailwind CSS:** For utility-first styling that keeps your UI fresh and responsive.
+- **ChatGPT:** The secret sauce powering the creative name generation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - Explore the extensive documentation.
-- [Learn Next.js](https://nextjs.org/learn) - Follow the interactive tutorial.
+## Getting Started
 
-Contribute to the [Next.js GitHub repository](https://github.com/vercel/next.js/) and share your feedback!
+### Prerequisites
 
-## Deployment
+- [Node.js](https://nodejs.org/) (v14 or above)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-Deploy your Next.js app on Vercel with a few clicks:
+### Installation
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+1. Clone the repository:
 
-For more details, refer to the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
+```bash
+git clone <https://github.com/petehod/loop-name-generator.git>
+```
 
----
+2. Install dependencies:
 
-Happy coding! 🚀
+```bash
+	npm install
+```
 
----
+3. Run the development server
 
-Feel free to customize this README further to better match your project's personality and details!
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000/) in your browser to see the app in action!
+
+### **Usage**
+
+1. **Enter Your Details:** Fill in your Instagram handle, select your desired key and tempo (if any), and enter a word or phrase that inspires you.
+
+2. **Generate Names:** Hit the generate button and watch as ChatGPT whips up 10 fresh file name ideas for your beat or melody.
+
+3. **Pick Your Favorite:** Scroll through the suggestions, pick the one that resonates with your vibe.
